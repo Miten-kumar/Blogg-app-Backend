@@ -6,7 +6,6 @@ const app = express();
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const jwtkey = "user";
-const port = 5000;
 const multer = require("multer");
 const path = require("path");
 var fs = require("fs");
@@ -336,4 +335,4 @@ app.post("/refreshToken", async (req, res) => {
   // res.status(200).send(req.body);
 });
 
-app.listen(port, () => console.log(`Database listening on port ${port}!`));
+app.listen(process.env.PORT, () => console.log(`Database listening on port ${process.env.PORT}!`));
