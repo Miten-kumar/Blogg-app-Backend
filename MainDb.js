@@ -11,7 +11,7 @@ const path = require("path");
 var fs = require("fs");
 var bcrypt = require("bcryptjs");
 var nodemailer = require("nodemailer");
-const PORT=process.env.PORT ||5000
+const PORT = process.env.PORT || 5000;
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads");
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use(express.json());
-app.use(cors({  origin: process.env.BASE_URL }));
+app.use(cors());
 // app.use(express.static(path.join(__dirname, "src")));
 
 app.use("/uploads", express.static("uploads"));
@@ -185,7 +185,7 @@ app.get("/search/:userId/:key", verifyToken, async (req, res) => {
   res.send(data);
 });
 
-app.get("/searchall/:key",verifyToken, async (req, res) => {
+app.get("/searchall/:key", verifyToken, async (req, res) => {
   let data = await blog.find({
     $or: [
       { name: { $regex: req.params.key } },
